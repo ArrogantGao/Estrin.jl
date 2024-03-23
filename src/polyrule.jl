@@ -16,11 +16,21 @@ function naive_sum(x::T, poly::Poly{N, T}) where {N, T}
     return result
 end
 
+# only work for low degree polynomials
 function estrin_rule(x::T, poly::Poly{N, T}) where {N, T}
     if N > 2
         poly_new = Poly{div(N + 1, 2), T}(ntuple(i -> muladd(x, poly[2 * i], poly[2*i - 1]), Val(div(N + 1, 2))))
         return estrin_rule(x^2, poly_new)
     else
         return muladd(x, poly[2], poly[1])
+    end
+end
+
+function estrin_rule_tile(x::T, poly::Poly{N, T}) where {N, T}
+    if N > 2048
+        poly_new = Poly{div(N, 2048), T}(ntuple(i -> muladd(x, poly[2 * i], poly[2*i - 1]), Val(div(N, 2048))))
+        return estrin_rule(x^2048, poly_new)
+    else
+        return estrin_rule(x, poly)
     end
 end
