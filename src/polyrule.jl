@@ -27,7 +27,7 @@ function estrin_rule(x::T, poly::Poly{N, T}) where {N, T}
 end
 
 @inbounds function estrin_rule_tile(x::T, poly::Poly{N, T}) where {N, T}
-    n = 128 # n is the tiling size
+    n = 16 # n is the tiling size
     if N > n
         poly_new = Poly{div(N - 1, n) + 1, T}(ntuple(i -> estrin_rule(x, Poly(poly, n * (i - 1) + 1, Poly{n, T})), Val(div(N - 1, n) + 1)))
         return estrin_rule_tile(x^n, poly_new)
