@@ -18,6 +18,7 @@ end
 
 # only work for low degree polynomials
 function estrin_rule(x::T, poly::Poly{N, T}) where {N, T}
+    @debug "estrin_rule: N = $N"
     if N > 2
         poly_new = Poly{div(N + 1, 2), T}(ntuple(i -> muladd(x, poly[2 * i], poly[2*i - 1]), Val(div(N + 1, 2))))
         return estrin_rule(x^2, poly_new)
@@ -27,6 +28,7 @@ function estrin_rule(x::T, poly::Poly{N, T}) where {N, T}
 end
 
 @inbounds function estrin_rule_tile(x::T, poly::Poly{N, T}) where {N, T}
+    @debug "estrin_rule_tile: N = $N"
     n = 16 # n is the tiling size
     if N > n
         poly_new = Poly{div(N - 1, n) + 1, T}(ntuple(i -> estrin_rule(x, Poly(poly, n * (i - 1) + 1, Poly{n, T})), Val(div(N - 1, n) + 1)))
