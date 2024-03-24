@@ -53,7 +53,7 @@ Then this process can be repeated recursively until the polynomial is small enou
 ## Benchmarks
 
 Benchmarks scripts and results are stored in the following repo: https://github.com/ArrogantGao/Polynomial_Benchmarks.
-The results are shown below, where I compared the performance of Estrin's scheme (with and without tiling) with Horner's method and the Polynomial.jl package.
+The results are shown below, where I compared the performance of Estrin's scheme (with and without tiling) with Horner's method and the [Polynomials.jl](https://github.com/JuliaMath/Polynomials.jl) package.
 
 ![](https://github.com/ArrogantGao/Polynomial_Benchmarks/raw/main/scripts/out/XZDesktop/2024-03-23--21-48-52/estrin_vs_horner_vs_polynomial_Float32.png)
 
