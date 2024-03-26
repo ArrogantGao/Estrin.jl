@@ -1,7 +1,5 @@
 module Estrin
 
-using LoopVectorization
-
 export Poly
 export naive_sum, horner_rule, estrin_rule, estrin_rule_tile
 
